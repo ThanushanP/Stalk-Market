@@ -2,11 +2,19 @@ import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt, mpld3
 import datetime
+# import tensorflow as tf
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from dateutil.relativedelta import relativedelta
 import json
 
+from fireTS.models import NARX
+from sklearn.ensemble import RandomForestRegressor
+
 def AppAction(tick):
+    '''
+    Given string tick indicating stock ticker
+        return json file of matplotlib figure of predictions
+    '''
     ## retrieve current date
     current_date = datetime.date.today()
     formatted_Cur = current_date.strftime('%Y-%m-%d')
@@ -17,8 +25,8 @@ def AppAction(tick):
 
     ## obtaining stock market dataset given ticker
     ticker = yf.download(tick, start = lb, end = ub)['Close']
-    ticker.to_csv("ticker.csv")
-    ticker = pd.read_csv("ticker.csv")
+    ticker.to_csv('ticker.csv')
+    ticker = pd.read_csv('ticker.csv')
 
     ## format time index to year month day
     ticker.index = pd.to_datetime(ticker['Date'], format='%Y-%m-%d')
@@ -31,14 +39,20 @@ def AppAction(tick):
     #########################################
     # Model Fitting
     #########################################
+
+    ## SARIMA
     SARIMAXmodel = SARIMAX(y, order = (1,0,0), seasonal_order=(2,2,2,12))
     SARIMAXmodel = SARIMAXmodel.fit()
     y_pred = SARIMAXmodel.get_forecast(len(test.index))
     y_pred_df = y_pred.conf_int(alpha = 0.05) 
-    y_pred_df["Predictions"] = SARIMAXmodel.predict(start = y_pred_df.index[0], end = y_pred_df.index[-1])
+    y_pred_df['Predictions'] = SARIMAXmodel.predict(start = y_pred_df.index[0], end = y_pred_df.index[-1])
     y_pred_df.index = test.index
-    y_pred_out = y_pred_df["Predictions"]
-
+    y_pred_out = y_pred_df['Predictions']
+    
+    '''
+        Neural Networks in testing, check nn-test.py
+    '''
+    
     ## Creating Figure
     fig = plt.gcf()
     plt.plot(train.index, train['Close'], color='black', label='Training')
