@@ -11,6 +11,8 @@
 		7FBBD30C2C0526620062BF8E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBBD30B2C0526620062BF8E /* ContentView.swift */; };
 		7FBBD30E2C0526650062BF8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FBBD30D2C0526650062BF8E /* Assets.xcassets */; };
 		7FBBD3112C0526650062BF8E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FBBD3102C0526650062BF8E /* Preview Assets.xcassets */; };
+		7FBBD31A2C0689080062BF8E /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBBD3192C0689070062BF8E /* KeyboardResponder.swift */; };
+		7FBBD31C2C078E960062BF8E /* PredictionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBBD31B2C078E950062BF8E /* PredictionPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		7FBBD30B2C0526620062BF8E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7FBBD30D2C0526650062BF8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7FBBD3102C0526650062BF8E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7FBBD3192C0689070062BF8E /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
+		7FBBD31B2C078E950062BF8E /* PredictionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				7FBBD30B2C0526620062BF8E /* ContentView.swift */,
 				7FBBD30D2C0526650062BF8E /* Assets.xcassets */,
 				7FBBD30F2C0526650062BF8E /* Preview Content */,
+				7FBBD3192C0689070062BF8E /* KeyboardResponder.swift */,
+				7FBBD31B2C078E950062BF8E /* PredictionPage.swift */,
 			);
 			path = "Stalk-Market";
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FBBD30C2C0526620062BF8E /* ContentView.swift in Sources */,
+				7FBBD31C2C078E960062BF8E /* PredictionPage.swift in Sources */,
 				7FBBD30A2C0526620062BF8E /* Stalk_MarketApp.swift in Sources */,
+				7FBBD31A2C0689080062BF8E /* KeyboardResponder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
