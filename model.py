@@ -36,23 +36,17 @@ def AppAction(tick):
     test = ticker[ticker.index > pd.to_datetime(cut, format='%Y-%m-%d')]
     y = train['Close']
 
-    #########################################
+    ##########################################
     # Model Fitting
     #########################################
-
-    ## SARIMA
     SARIMAXmodel = SARIMAX(y, order = (1,0,0), seasonal_order=(2,2,2,12))
     SARIMAXmodel = SARIMAXmodel.fit()
     y_pred = SARIMAXmodel.get_forecast(len(test.index))
     y_pred_df = y_pred.conf_int(alpha = 0.05) 
     y_pred_df['Predictions'] = SARIMAXmodel.predict(start = y_pred_df.index[0], end = y_pred_df.index[-1])
     y_pred_df.index = test.index
-    y_pred_out = y_pred_df['Predictions']
-    
-    '''
-        Neural Networks in testing, check nn-test.py
-    '''
-    
+    y_pred_out = y_pred_df["Predictions"]
+
     ## Creating Figure
     fig = plt.gcf()
     plt.plot(train.index, train['Close'], color='black', label='Training')
