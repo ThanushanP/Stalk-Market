@@ -39,7 +39,7 @@ def AppAction(tick):
     y_pred_df.index = test.index
     y_pred_out = y_pred_df["Predictions"]
 
-    ## Creating graphical Figure
+    ## Creating Graphical Figure
     fig = plt.gcf()
     plt.plot(train.index, train['Close'], color='black', label='Training')
     plt.plot(test.index, test['Close'], color='r', label='Testing')
