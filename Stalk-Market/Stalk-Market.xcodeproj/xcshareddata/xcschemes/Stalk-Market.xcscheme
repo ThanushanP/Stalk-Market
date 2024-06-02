@@ -56,6 +56,11 @@
             value = "bd7ebbd1ccmshd818f2a3e1678fdp114d69jsn2669e64a68cc"
             isEnabled = "YES">
          </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "YahooAPI2"
+            value = "bae5a99eacmsh55e0c3e3a52b95ep1e8e1ajsn7062f5861919"
+            isEnabled = "YES">
+         </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction

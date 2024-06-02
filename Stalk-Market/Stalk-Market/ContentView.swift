@@ -65,7 +65,7 @@ struct PaddedTextField: View {
         .lineLimit(1)
     }
     func getSearchResults(){
-        if let key = ProcessInfo.processInfo.environment["YahooAPI"]{
+        if let key = ProcessInfo.processInfo.environment["YahooAPI2"]{
             let headers = [
                 "X-RapidAPI-Key": key,
                 "X-RapidAPI-Host": "yahoo-finance127.p.rapidapi.com"
