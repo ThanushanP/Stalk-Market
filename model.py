@@ -1,14 +1,9 @@
 import pandas as pd
 import yfinance as yf
-import matplotlib.pyplot as plt, mpld3
 import datetime
-# import tensorflow as tf
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from dateutil.relativedelta import relativedelta
-import json
 
-# from fireTS.models import NARX
-# from sklearn.ensemble import RandomForestRegressor
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging
