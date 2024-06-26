@@ -7,8 +7,11 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 from dateutil.relativedelta import relativedelta
 import json
 
-from fireTS.models import NARX
-from sklearn.ensemble import RandomForestRegressor
+# from fireTS.models import NARX
+# from sklearn.ensemble import RandomForestRegressor
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import logging
 
 def AppAction(tick):
     '''
@@ -51,17 +54,41 @@ def AppAction(tick):
     Testing out with NN -- see nn-test file
     '''
     
-    ## Creating Figure
-    fig = plt.gcf()
-    plt.plot(train.index, train['Close'], color='black', label='Training')
-    plt.plot(test.index, test['Close'], color='r', label='Testing')
-    plt.plot(y_pred_out, color='blue', label = 'SARIMA Predictions')
-    plt.legend()
-    # plt.show()
 
-    ## saving to json
-    mpld3.save_json(fig, 'stalker.json')
-    ## return json content
-    with open('stalker.json') as f:
-        out = json.load(f)
-    return out
+    dictionary = {
+        'train': str(train.to_dict()),
+        'test': str(test.to_dict()),
+        'pred': str(y_pred_out.to_dict()),
+    }
+
+    return dictionary
+
+app = Flask(__name__)
+CORS(app)
+logging.basicConfig(level=logging.DEBUG)
+
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    logging.info("Received request: %s", request.get_json())
+    try:
+        data = request.get_json()
+        ticker = data.get('ticker')
+        if not ticker:
+            response = jsonify({'error': 'Ticker is required'})
+            response.status_code = 400
+            logging.info("Response: %s", response.get_data(as_text=True))
+            return response
+        response = jsonify(AppAction(ticker))
+        response.status_code = 200
+        logging.info("Response: %s", response.get_data(as_text=True))
+        return response
+    except Exception as e:
+        logging.exception("An error occurred while processing the request")
+        response = jsonify({'error': 'An internal error occurred'})
+        response.status_code = 500
+        logging.info("Response: %s", response.get_data(as_text=True))
+        return response
+
+if __name__ == '__main__':
+    app.run(debug=True)
