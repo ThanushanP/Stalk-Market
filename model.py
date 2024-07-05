@@ -49,11 +49,10 @@ def AppAction(tick):
     Testing out with NN -- see nn-test file
     '''
     
-
     dictionary = {
-        'train': str(train.to_dict()),
-        'test': str(test.to_dict()),
-        'pred': str(y_pred_out.to_dict()),
+        'train': {str(key): value for key, value in train['Close'].to_dict().items()},
+        'test': {str(key): value for key, value in test['Close'].to_dict().items()},
+        'pred': {str(key): value for key, value in y_pred_out.to_dict().items()},
     }
 
     return dictionary
