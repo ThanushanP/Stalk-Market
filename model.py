@@ -22,8 +22,8 @@ def AppAction(tick):
     cut = (current_date - relativedelta(months=1) + relativedelta(day=1)).strftime('%Y-%m-%d')
 
     ## obtaining stock market dataset given ticker
-    ticker = yf.download(tick, start = lb, end = ub)['Close']
-    ticker.to_csv('ticker.csv')
+    # ticker = yf.download(tick, start = lb, end = ub)['Close']
+    # ticker.to_csv('ticker.csv')
     ticker = pd.read_csv('ticker.csv')
 
     ## format time index to year month day
